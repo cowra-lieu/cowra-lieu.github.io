@@ -7,12 +7,14 @@ theme:
     - media: "(prefers-color-scheme: light)"
       scheme: default
       primary: indigo
+      accent: indigo
       toggle:
         icon: material/weather-sunny
         name: 切换至深色模式
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: black
+      accent: indigo
       toggle:
         icon: material/weather-night
         name: 切换至浅色模式
@@ -29,9 +31,14 @@ plugins:
   - awesome-pages
 
 markdown_extensions:
-  - pymdownx.superfences
+  - pymdownx.inlinehilite          # 支持行内代码高亮
+  - pymdownx.snippets
+  - pymdownx.superfences:          # 支持标准的代码块围栏
+      preserve_tabs: true
   - pymdownx.highlight:
       anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true   # 【关键】这一行负责把颜色类注入到 HTML 中
   - extra
 
 # 更换为安全的 CDN 链接
