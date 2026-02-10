@@ -23,25 +23,20 @@ theme:
     - navigation.top
     - content.code.copy
 
-# 插件配置
 plugins:
   - search:
-      lang: 
-        - en
-        - ja  # 借用日语分词逻辑来优化中文搜索，效果极佳
+      lang: [en, ja]
   - awesome-pages
 
-# 扩展功能：代码高亮 + 数学公式
 markdown_extensions:
-  - pymdownx.arithmetic
-  - pymdownx.superfences
+  - pymdownx.arithmetic:
+      content_style: "code"
+  - pymdownx.superfences  # 删掉了之前报错的 !!python/name 这一行
   - pymdownx.highlight:
       anchor_linenums: true
   - extra
 
-# 增加 Mermaid 的脚本支持
+# 用这种方式支持 Mermaid 和 MathJax，最稳妥
 extra_javascript:
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-  - https://unpkg.com/mermaid/dist/mermaid.min.js  # 新增这一行
-  
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js
+  - https://unpkg.com/mermaid@10/dist/mermaid.min.js
