@@ -36,7 +36,8 @@ markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.superfences
-  - pymdownx.arithmetic  # 开启数学公式解析
+  - pymdownx.arithmetic:  # 开启数学公式解析
+      content_style: "code" # 提高兼容性
   - extra                # 包含了一些基础的列表和表格增强
 
 # 引入外部 MathJax 脚本来渲染公式
