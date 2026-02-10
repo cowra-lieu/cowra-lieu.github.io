@@ -1,0 +1,13 @@
+site_name: 我的个人笔记库
+theme:
+  name: material
+  language: zh  # 设置中文
+  features:
+    - navigation.tabs      # 顶部页签
+    - navigation.sections  # 侧边栏分组显示
+    - navigation.expand    # 默认展开
+    - search.suggest       # 搜索建议
+
+plugins:
+  - search
+  - awesome-pages # 关键插件：自动识别目录结构
