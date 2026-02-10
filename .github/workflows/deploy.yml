@@ -23,7 +23,10 @@ jobs:
           python-version: 3.x
           
       - name: Install dependencies
-        run: pip install mkdocs-material mkdocs-awesome-pages-plugin pymdown-extensions
+        run: |
+          pip install mkdocs-material \
+                      mkdocs-awesome-pages-plugin \
+                      pymdown-extensions
         
       - name: Deploy to GitHub Pages
         run: mkdocs gh-deploy --force

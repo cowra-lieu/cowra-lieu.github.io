@@ -33,14 +33,15 @@ plugins:
 
 # 扩展功能：代码高亮 + 数学公式
 markdown_extensions:
+  - pymdownx.arithmetic
+  - pymdownx.superfences
   - pymdownx.highlight:
       anchor_linenums: true
-  - pymdownx.superfences
-  - pymdownx.arithmetic:  # 开启数学公式解析
-      content_style: "code" # 提高兼容性
-  - extra                # 包含了一些基础的列表和表格增强
+  - extra
 
-# 引入外部 MathJax 脚本来渲染公式
+# 增加 Mermaid 的脚本支持
 extra_javascript:
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - https://unpkg.com/mermaid/dist/mermaid.min.js  # 新增这一行
+  
