@@ -24,6 +24,7 @@ theme:
     - navigation.expand
     - navigation.top
     - content.code.copy
+    - content.code.annotate
 
 plugins:
   - search:
@@ -35,6 +36,10 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.superfences:          # 支持标准的代码块围栏
       preserve_tabs: true
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.mermaid_format
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
