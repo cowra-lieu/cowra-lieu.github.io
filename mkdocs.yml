@@ -1,13 +1,45 @@
 site_name: 我的个人笔记库
+
 theme:
   name: material
-  language: zh  # 设置中文
+  language: zh
+  palette: 
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: 切换至深色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      toggle:
+        icon: material/weather-night
+        name: 切换至浅色模式
   features:
-    - navigation.tabs      # 顶部页签
-    - navigation.sections  # 侧边栏分组显示
-    - navigation.expand    # 默认展开
-    - search.suggest       # 搜索建议
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - content.code.copy
 
+# 插件配置
 plugins:
-  - search
-  - awesome-pages # 关键插件：自动识别目录结构
+  - search:
+      lang: 
+        - en
+        - ja  # 借用日语分词逻辑来优化中文搜索，效果极佳
+  - awesome-pages
+
+# 扩展功能：代码高亮 + 数学公式
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.arithmetic  # 开启数学公式解析
+  - extra                # 包含了一些基础的列表和表格增强
+
+# 引入外部 MathJax 脚本来渲染公式
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
