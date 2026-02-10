@@ -31,7 +31,7 @@ plugins:
 markdown_extensions:
   - pymdownx.arithmetic:
       content_style: "code"
-  - pymdownx.superfences  # 删掉了之前报错的 !!python/name 这一行
+  - pymdownx.superfences
   - pymdownx.highlight:
       anchor_linenums: true
   - extra
