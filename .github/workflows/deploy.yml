@@ -17,15 +17,21 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-          cache: 'pip' # 开启缓存，加快速度并减少安装错误
-          
-      - name: Install dependencies
+
+      - name: Force Install and Deploy
         run: |
+          # 1. 确保使用的是当前 Python 的 pip
           python -m pip install --upgrade pip
+          
+          # 2. 安装所有依赖
           python -m pip install -r requirements.txt
           
-      - name: Deploy to GitHub Pages
-        run: |
+          # 3. 调试：强制打印路径确认 (如果不报错可以忽略这部分输出)
+          python -c "import pymdownx.arithmetic; print('SUCCESS: Found pymdownx.arithmetic')"
+          
+          # 4. 配置 Git
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # 5. 使用 python -m 模式启动 mkdocs，强制指向刚刚安装包的路径
           python -m mkdocs gh-deploy --force
