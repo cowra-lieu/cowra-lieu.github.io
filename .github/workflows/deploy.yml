@@ -17,21 +17,17 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
-      - name: Force Install and Deploy
+          
+      - name: Force Reinstall Dependencies
         run: |
-          # 1. 确保使用的是当前 Python 的 pip
+          # 强制清理并重新安装
           python -m pip install --upgrade pip
+          python -m pip install --no-cache-dir -r requirements.txt
           
-          # 2. 安装所有依赖
-          python -m pip install -r requirements.txt
-          
-          # 3. 调试：强制打印路径确认 (如果不报错可以忽略这部分输出)
-          python -c "import pymdownx.arithmetic; print('SUCCESS: Found pymdownx.arithmetic')"
-          
-          # 4. 配置 Git
+      - name: Deploy to GitHub Pages
+        run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          
-          # 5. 使用 python -m 模式启动 mkdocs，强制指向刚刚安装包的路径
+          # 使用 PYTHONPATH 环境变量强制包含 site-packages 路径
+          export PYTHONPATH=$PYTHONPATH:$(python -c "import site; print(site.getsitepackages()[0])")
           python -m mkdocs gh-deploy --force
